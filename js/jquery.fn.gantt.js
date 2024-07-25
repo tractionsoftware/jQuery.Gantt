@@ -949,9 +949,10 @@
 
             // **Progress Bar**
             // Return an element representing a progress of position within the entire chart
-            createProgressBar: function (label, desc, classNames, dataObj) {
+            // Added tractionid, fqid, and url parameters (takashi, july 25, 2024)
+            createProgressBar: function (label, desc, classNames, dataObj, tractionId, fqid, url) {
                 label = label || "";
-                var bar = $('<div class="bar"><div class="fn-label">' + label + '</div></div>')
+                var bar = $('<div class="bar" data-tractionid="' + tractionId + '" data-fqid="' + fqid + '" data-url="' + url + '"><div class="fn-label">' + label + '</div></div>')
                         .data("dataObj", dataObj);
                 if (desc) {
                     bar
@@ -1040,7 +1041,9 @@
                                 dl = Math.floor((cTo - cFrom) / cellWidth) + 1;
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
                                 
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                //_bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                // Added tractionid, fqid, and url (takashi, july 25, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1066,7 +1069,10 @@
                                 dl = Math.round((cTo - cFrom) / cellWidth) + 1;
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
 
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+
+                                // Added tractionid, fqid, and url (takashi, july 25, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1104,7 +1110,10 @@
                                 dl = Math.round((cTo - cFrom) / cellWidth) + 1;
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
 
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+
+                                // Added tractionid, fqid, and url (takashi, july 25, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1129,7 +1138,10 @@
                                 dl = Math.round((dTo - dFrom) / UTC_DAY_IN_MS) + 1;
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
 
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+
+                                // Added tractionid, fqid, and url (takashi, july 25, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
