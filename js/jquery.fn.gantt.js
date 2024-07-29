@@ -175,10 +175,12 @@
             scale: "days",
             maxScale: "months",
             minScale: "hours",
-            // callbacks
+            // callbacks for various events
             onItemClick: function (data) { return; },
             onAddClick: function (dt, rowId) { return; },
-            onRender: $.noop
+            // callback for rendering events
+            // onRender: $.noop
+            onRender: function (data) { return; }
         };
 
         // read options
@@ -298,7 +300,14 @@
 
                 $dataPanel.css({ height: $leftPanel.height() });
                 core.waitToggle(element);
-                settings.onRender();
+                // invoke the onRender callback with current settings
+                // settings.onRender();
+                settings.onRender({
+                    scale: settings.scale,
+                    source: settings.source,
+                    holidays: settings.holidays,
+                    itemsPerPage: settings.itemsPerPage
+                });
             },
 
             // Create and return the left panel with labels
