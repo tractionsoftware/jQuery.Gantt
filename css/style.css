@@ -115,7 +115,7 @@
     width: 100%;
 }
 
-.fn-gantt .day, .fn-gantt .date {
+.fn-gantt .day, .fn-gantt .date, .fn-gantt .hour {
     overflow: visible;
     width: 24px;
     line-height: 24px;

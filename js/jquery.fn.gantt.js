@@ -515,7 +515,7 @@
                             dayClass = "holiday";
                         }
                         horArr.push(
-                            '<div class="row day ' +
+                            '<div class="row hour ' +
                             dayClass +
                             '" id="dh-' +
                             rday.getTime() +
