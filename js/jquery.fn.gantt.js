@@ -189,6 +189,10 @@
         // can't use cookie if don't have `$.cookie`
         settings.useCookie = settings.useCookie && $.isFunction($.cookie);
 
+        // save the chart data as 'settings'
+        // (takashi, oct 23, 2024)
+        this.data('ganttSettings', settings);
+
         // Grid management
         // ===============
 
@@ -958,10 +962,11 @@
 
             // **Progress Bar**
             // Return an element representing a progress of position within the entire chart
-            // Added tractionid, fqid, and url parameters (takashi, july 25, 2024)
-            createProgressBar: function (label, desc, classNames, dataObj, tractionId, fqid, url) {
+            // Added tractionId, fqid, and url parameters (takashi, july 25, 2024)
+            // Added alldayStart and alldayDue (takashi, oct 8, 2024)
+            createProgressBar: function (label, desc, classNames, dataObj, tractionId, fqid, url, alldayStart, alldayDue) {
                 label = label || "";
-                var bar = $('<div class="bar" data-tractionid="' + tractionId + '" data-fqid="' + fqid + '" data-url="' + url + '"><div class="fn-label">' + label + '</div></div>')
+                var bar = $('<div class="bar" data-tractionid="' + tractionId + '" data-fqid="' + fqid + '" data-url="' + url + '" data-allday-start="' + alldayStart + '" data-allday-due="' + alldayDue + '"><div class="fn-label">' + label + '</div></div>')
                         .data("dataObj", dataObj);
                 if (desc) {
                     bar
@@ -1051,8 +1056,9 @@
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
                                 
                                 //_bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
-                                // Added tractionid, fqid, and url (takashi, july 25, 2024)
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url);
+                                // Added tractionId, fqid, and url (takashi, july 25, 2024)
+                                // Added alldayStart and alldayDUe (takashi, oct 8, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1079,9 +1085,9 @@
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
 
                                 // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
-
-                                // Added tractionid, fqid, and url (takashi, july 25, 2024)
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url);
+                                // Added tractionId, fqid, and url (takashi, july 25, 2024)
+                                // Added alldayStart and alldayDUe (takashi, oct 8, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1121,8 +1127,9 @@
 
                                 // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
 
-                                // Added tractionid, fqid, and url (takashi, july 25, 2024)
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url);
+                                // Added tractionId, fqid, and url (takashi, july 25, 2024)
+                                // Added alldayStart and alldayDUe (takashi, oct 8, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1149,8 +1156,9 @@
 
                                 // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
 
-                                // Added tractionid, fqid, and url (takashi, july 25, 2024)
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url);
+                                // Added tractionId, fqid, and url (takashi, july 25, 2024)
+                                // Added alldayStart and alldayDUe (takashi, oct 8, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1739,4 +1747,12 @@
         });
 
     };
+
+    // Get the gantt chart's settings
+    // Usage: $.fn.gantt.getSettings('.gantt')
+    // (takashi, oct 23, 2024)
+    $.fn.gantt.getSettings = function(element) {
+        return $(element).data('ganttSettings');
+    };
+
 })(jQuery);
