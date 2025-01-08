@@ -964,9 +964,12 @@
             // Return an element representing a progress of position within the entire chart
             // Added tractionId, fqid, and url parameters (takashi, july 25, 2024)
             // Added alldayStart and alldayDue (takashi, oct 8, 2024)
-            createProgressBar: function (label, desc, classNames, dataObj, tractionId, fqid, url, alldayStart, alldayDue) {
+            // Added startDate and dueDate (takashi, oct 24, 2024)
+            // Added epropStartDate, epropDueDate, goalFqid, and milestoneFqid (takashi, dec 6, 2024)
+            // Added startType and dueType (takashi, dec 12, 2024)
+            createProgressBar: function (label, desc, classNames, dataObj, tractionId, fqid, url, alldayStart, alldayDue,  startDate, dueDate, epropStartDate, epropDueDate, startType, dueType, goalFqid, milestoneFqid) {
                 label = label || "";
-                var bar = $('<div class="bar" data-tractionid="' + tractionId + '" data-fqid="' + fqid + '" data-url="' + url + '" data-allday-start="' + alldayStart + '" data-allday-due="' + alldayDue + '"><div class="fn-label">' + label + '</div></div>')
+                var bar = $('<div class="bar" data-tractionid="' + tractionId + '" data-fqid="' + fqid + '" data-url="' + url + '" data-allday-start="' + alldayStart + '" data-allday-due="' + alldayDue + '" data-start-date="' + startDate + '" data-due-date="' + dueDate + '" data-eprop-start-date="' + epropStartDate + '" data-eprop-due-date="' + epropDueDate + '" data-start-type="' + startType + '" data-due-type="' + dueType + '" data-goal-fqid="' + goalFqid + '" data-milestone-fqid="' + milestoneFqid + '"><div class="fn-label">' + label + '</div></div>')
                         .data("dataObj", dataObj);
                 if (desc) {
                     bar
@@ -1057,8 +1060,11 @@
                                 
                                 //_bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
                                 // Added tractionId, fqid, and url (takashi, july 25, 2024)
-                                // Added alldayStart and alldayDUe (takashi, oct 8, 2024)
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue);
+                                // Added alldayStart and alldayDue (takashi, oct 8, 2024)
+                                // Added startDate and dueDate (takashi, oct 24, 2024)
+                                // Added epropStartDate, epropDueDate, goalFqid, and milestoneFqid (takashi, dec 6, 2024)
+                                // Added startType and dueType (takashi, dec 12, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue, day.startDate, day.dueDate, day.epropStartDate, day.epropDueDate, day.startType, day.dueType, day.goalFqid, day.milestoneFqid);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1086,8 +1092,11 @@
 
                                 // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
                                 // Added tractionId, fqid, and url (takashi, july 25, 2024)
-                                // Added alldayStart and alldayDUe (takashi, oct 8, 2024)
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue);
+                                // Added alldayStart and alldayDue (takashi, oct 8, 2024)
+                                // Added startDate and dueDate (takashi, oct 24, 2024)
+                                // Added epropStartDate, epropDueDate, goalFqid, and milestoneFqid (takashi, dec 6, 2024)
+                                // Added startType and dueType (takashi, dec 12, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue, day.startDate, day.dueDate, day.epropStartDate, day.epropDueDate, day.startType, day.dueType, day.goalFqid, day.milestoneFqid);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1128,8 +1137,11 @@
                                 // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
 
                                 // Added tractionId, fqid, and url (takashi, july 25, 2024)
-                                // Added alldayStart and alldayDUe (takashi, oct 8, 2024)
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue);
+                                // Added alldayStart and alldayDue (takashi, oct 8, 2024)
+                                // Added startDate and dueDate (takashi, oct 24, 2024)
+                                // Added epropStartDate, epropDueDate, goalFqid, and milestoneFqid (takashi, dec 6, 2024)
+                                // Added startType and dueType (takashi, dec 12, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue, day.startDate, day.dueDate, day.epropStartDate, day.epropDueDate, day.startType, day.dueType, day.goalFqid, day.milestoneFqid);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1157,8 +1169,11 @@
                                 // _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
 
                                 // Added tractionId, fqid, and url (takashi, july 25, 2024)
-                                // Added alldayStart and alldayDUe (takashi, oct 8, 2024)
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue);
+                                // Added alldayStart and alldayDue (takashi, oct 8, 2024)
+                                // Added startDate and dueDate (takashi, oct 24, 2024)
+                                // Added epropStartDate, epropDueDate, goalFqid, and milestoneFqid (takashi, dec 6, 2024)
+                                // Added startType and dueType (takashi, dec 12, 2024)
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, day.tractionId, day.fqid, day.url, day.alldayStart, day.alldayDue, day.startDate, day.dueDate, day.epropStartDate, day.epropDueDate, day.startType, day.dueType, day.goalFqid, day.milestoneFqid);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
